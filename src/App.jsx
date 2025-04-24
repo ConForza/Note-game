@@ -1,0 +1,67 @@
+import { useState } from "react";
+import QuizPage from "./components/QuizPage";
+import Settings from "./components/Settings";
+
+function App() {
+  const [route, setRoute] = useState("menu");
+  const [noteSettings, setNoteSettings] = useState({
+    mode: "treble",
+    difficulty: "1",
+    noOfQuestions: "5",
+    timeLimit: "10000",
+  });
+
+  function handleRoute(route) {
+    setRoute(route);
+  }
+
+  function handleSettingsChange(event) {
+    setNoteSettings((prevSettings) => ({
+      ...prevSettings,
+      [event.target.name]: event.target.value,
+    }));
+  }
+
+  console.log(route);
+
+  return (
+    <div className="min-h-screen bg-emerald-50 flex flex-col items-center justify-center">
+      {route === "quiz" && (
+        <QuizPage
+          noteSettings={noteSettings}
+          handleRestartQuiz={() => handleRoute("menu")}
+        />
+      )}
+      {route === "menu" && (
+        <div className="text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
+            Note Game
+          </h1>
+          <div className="space-x-4">
+            <button
+              onClick={() => handleRoute("quiz")}
+              className="bg-blue-500 text-white w-30 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition"
+            >
+              Start
+            </button>
+            <button
+              onClick={() => handleRoute("settings")}
+              className="bg-gray-300 text-gray-800 w-30 py-3 rounded-lg shadow-lg hover:bg-gray-400 transition"
+            >
+              Settings
+            </button>
+          </div>
+        </div>
+      )}
+      {route === "settings" && (
+        <Settings
+          handleSettingsChange={handleSettingsChange}
+          handleRestartQuiz={() => handleRoute("menu")}
+          settings={noteSettings}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
