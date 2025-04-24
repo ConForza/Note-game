@@ -23,7 +23,7 @@ export default function Quiz({
         <div className="flex flex-row justify-center h-45">
           <img
             className="rounded-lg self-center"
-            src={`./src/assets/images/notes/${chosenNote.type}-${chosenNote.id}.png`}
+            src={`./src/assets/images/notes/${chosenNote.type}-${chosenNote.id}.PNG`}
           ></img>
         </div>
         <ul className="questions flex flex-col gap-2">
