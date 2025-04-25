@@ -110,7 +110,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
       } else {
         initializeNotes();
       }
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   });
