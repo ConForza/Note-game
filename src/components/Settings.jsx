@@ -62,7 +62,7 @@ export default function Settings({
             >
               <option value="10000">Easy (10 secs)</option>
               <option value="5000">Medium (5 secs)</option>
-              <option value="2000">Hard (2 secs)</option>
+              <option value="2500">Hard (2 secs)</option>
             </select>
           </div>
           <div className="flex flex-row justify-end">
