@@ -25,7 +25,7 @@ function App() {
   console.log(route);
 
   return (
-    <div className="h-dvh bg-emerald-50 flex flex-col items-center justify-center">
+    <div className="h-dvh bg-orange-100 flex flex-col items-center justify-center">
       {route === "quiz" && (
         <QuizPage
           noteSettings={noteSettings}
