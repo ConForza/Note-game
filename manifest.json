@@ -1,7 +1,7 @@
 {
   "name": "Note Game",
   "short_name": "Note Game",
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "icons": [
     {
