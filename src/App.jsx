@@ -25,7 +25,7 @@ function App() {
   console.log(route);
 
   return (
-    <div className="min-h-screen min-w-85 bg-orange-100 flex flex-col items-center justify-center">
+    <div className="min-h-dvh min-w-85 bg-orange-100 flex flex-col items-center justify-center">
       {route === "quiz" && (
         <QuizPage
           noteSettings={noteSettings}
