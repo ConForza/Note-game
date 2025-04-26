@@ -2,7 +2,6 @@
   "name": "Note Game",
   "short_name": "Note Game",
   "start_url": "./",
-  "scope": ".",
   "display": "standalone",
   "icons": [
     {
