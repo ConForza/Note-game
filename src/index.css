@@ -1,6 +1,15 @@
 /* Import TailwindCSS base styles */
 @import "tailwindcss";
 
+html {
+  position: static;
+  overflow-y: hidden;
+}
+
+body {
+  overflow: hidden;
+}
+
 .correct-answer {
   background-color: #6bd090; /* Green */
 }
