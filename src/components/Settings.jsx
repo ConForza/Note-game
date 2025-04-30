@@ -6,8 +6,8 @@ export default function Settings({
   handleRestartQuiz,
 }) {
   return (
-    <div>
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-100">
+    <div className="w-100 p-6 flex justify-center">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Settings</h2>
 
         <div className="space-y-4">

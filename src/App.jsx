@@ -22,8 +22,6 @@ function App() {
     }));
   }
 
-  console.log(route);
-
   return (
     <div className="min-h-dvh min-w-85 bg-orange-100 flex flex-col items-center justify-center">
       {route === "quiz" && (
@@ -37,7 +35,7 @@ function App() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
             Note Game
           </h1>
-          <div className="space-x-4">
+          <div className="space-x-4 mb-10">
             <button
               onClick={() => handleRoute("quiz")}
               className="bg-blue-500 text-white w-30 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition"
@@ -54,11 +52,13 @@ function App() {
         </div>
       )}
       {route === "settings" && (
-        <Settings
-          handleSettingsChange={handleSettingsChange}
-          handleRestartQuiz={() => handleRoute("menu")}
-          settings={noteSettings}
-        />
+        <div className="my-20">
+          <Settings
+            handleSettingsChange={handleSettingsChange}
+            handleRestartQuiz={() => handleRoute("menu")}
+            settings={noteSettings}
+          />
+        </div>
       )}
     </div>
   );
