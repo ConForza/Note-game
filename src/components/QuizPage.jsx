@@ -125,7 +125,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col w-full">
       <div className="w-auto text-center">
         <h1 className="mb-2 text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text">
           Note Game

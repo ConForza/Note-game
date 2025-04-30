@@ -11,15 +11,15 @@ body {
 }
 
 .correct-answer {
-  background-color: #6bd090; /* Green */
+  background-color: #6bd090;
 }
 
 .incorrect-answer {
-  background-color: #f06f6f; /* Red */
+  background-color: #f06f6f;
 }
 
 .highlight-answer {
-  outline: 0.3em solid #22c55e; /* Green */
+  outline: 0.3em solid #22c55e;
   outline-offset: -0.3em;
 }
 
@@ -39,7 +39,7 @@ button:hover:enabled {
 
 button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6; /* Blue shadow when focused */
+  box-shadow: 0 0 0 2px #3b82f6;
 }
 
 #modal {
@@ -53,4 +53,12 @@ select {
   border-radius: 0.375rem;
   outline: none;
   background-color: #f9fafb;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  width: 100dvw;
+  text-align: center;
 }

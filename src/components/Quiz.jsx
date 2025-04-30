@@ -20,9 +20,9 @@ export default function Quiz({
         />
       </div>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-row justify-center h-45 max-w-75">
+        <div className="flex flex-row justify-center h-50 min-w-full bg-white rounded-lg">
           <img
-            className="rounded-lg self-center"
+            className="self-center"
             src={`./${chosenNote.type}-${chosenNote.id}.png`}
           ></img>
         </div>
