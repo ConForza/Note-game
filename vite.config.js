@@ -11,7 +11,7 @@ export default defineConfig({
     commonjs(),
     tailwindcss(),
     VitePWA({
-      injectRegister: "auto",
+      registerType: "autoUpdate",
     }),
   ],
   base: "/Note-game/",
