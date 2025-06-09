@@ -8,7 +8,7 @@ export default function Gameover({ answers, noteSettings, handleRestartQuiz }) {
       </h2>
       <h4 className="text-xl text-center text-gray-700 mb-6">
         {`You got ${
-          answers.filter((isAnswerCorrect) => isAnswerCorrect === true).length
+          answers.filter((isAnswerCorrect) => isAnswerCorrect).length
         }/${noteSettings.noOfQuestions} questions correct`}
       </h4>
       <div className="flex flex-row justify-end">
