@@ -17,8 +17,8 @@ export default defineConfig({
         name: "Note Game",
         short_name: "NoteGame",
         description: "A note game to assist with musical sight-reading",
-        theme_color: "#ffedd5",
-        background_color: "#ffedd5",
+        theme_color: "#1a202c",
+        background_color: "#1a202c",
         display: "standalone",
         icons: [
           {
