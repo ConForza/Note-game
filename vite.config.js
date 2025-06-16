@@ -15,10 +15,10 @@ export default defineConfig({
       includeAssets: ["**/*"],
       manifest: {
         name: "Note Game",
-        short_name: "NoteGame",
+        short_name: "Note Game",
         description: "A note game to assist with musical sight-reading",
-        theme_color: "#1a202c",
-        background_color: "#1a202c",
+        theme_color: "#171717",
+        background_color: "#171717",
         display: "standalone",
         icons: [
           {
