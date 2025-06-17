@@ -63,3 +63,9 @@ footer {
   width: 100dvw;
   text-align: center;
 }
+
+@media (orientation: landscape) {
+  .main-div {
+    flex-direction: row;
+  }
+}
