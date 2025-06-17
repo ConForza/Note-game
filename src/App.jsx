@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
-      <div className="main-div h-dvh w-dvw bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col items-center justify-center">
+      <div className="h-dvh w-dvw bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col items-center justify-center">
         <div className="w-90 p-6 flex justify-center">
           {route === "quiz" && (
             <QuizPage

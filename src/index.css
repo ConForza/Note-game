@@ -65,7 +65,7 @@ footer {
 }
 
 @media (orientation: landscape) {
-  .main-div {
+  .quiz-div {
     flex-direction: row;
   }
 }
