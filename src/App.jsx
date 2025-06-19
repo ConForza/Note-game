@@ -8,7 +8,7 @@ function App() {
     mode: "treble",
     difficulty: "1",
     noOfQuestions: "5",
-    timeLimit: "10000",
+    timeLimit: "1000000",
   });
   const [isDarkMode, setIsDarkMode] = useState(false);
 
