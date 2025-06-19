@@ -10,7 +10,7 @@ export default function Quiz({
   onTimeout,
 }) {
   return (
-    <div className="quiz-container flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <div>
         <div>
           <QuestionTimer
@@ -22,7 +22,7 @@ export default function Quiz({
         </div>
       </div>
       <div className="question-div flex gap-6">
-        <div className="flex flex-row justify-center h-50 bg-white rounded-lg">
+        <div className="flex flex-row justify-center h-50 bg-white rounded-lg w-1/2">
           <img
             className="self-center"
             src={`./${chosenNote.type}-${chosenNote.id}.png`}
