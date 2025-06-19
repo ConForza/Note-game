@@ -20,7 +20,6 @@ export default defineConfig({
         theme_color: "#171717",
         background_color: "#171717",
         display: "standalone",
-        orientation: "portrait-primary",
         icons: [
           {
             src: "note-game.png",
