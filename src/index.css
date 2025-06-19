@@ -64,20 +64,13 @@ footer {
   text-align: center;
 }
 
-@media (orientation: portrait) {
-  .question-div {
-    flex-direction: column;
-    gap: 6;
-  }
-}
-
 @media (orientation: landscape) {
   .question-div {
     flex-direction: row;
   }
 
   .answers-div {
-    min-width: 250px;
+    width: 50%;
   }
 
   .restart-btn {
@@ -96,6 +89,12 @@ footer {
   }
 
   .note-img {
+    height: auto;
     width: 50%;
+  }
+
+  .inner-container {
+    max-width: 100%;
+    min-width: 70%;
   }
 }
