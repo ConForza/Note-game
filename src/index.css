@@ -64,8 +64,34 @@ footer {
   text-align: center;
 }
 
+@media (orientation: portrait) {
+  .question-div {
+    flex-direction: column;
+    gap: 6;
+  }
+}
+
 @media (orientation: landscape) {
   .question-div {
     flex-direction: row;
+  }
+
+  .answers-div {
+    min-width: 250px;
+  }
+
+  .restart-btn {
+    margin-top: 3px;
+  }
+
+  progress {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 0;
   }
 }

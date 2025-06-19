@@ -10,23 +10,25 @@ export default function Quiz({
   onTimeout,
 }) {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="quiz-container flex flex-col gap-5">
       <div>
-        <QuestionTimer
-          onTimeout={onTimeout}
-          key={answerOptions}
-          timeLimit={timeLimit}
-          buttonState={buttonState}
-        />
+        <div>
+          <QuestionTimer
+            onTimeout={onTimeout}
+            key={answerOptions}
+            timeLimit={timeLimit}
+            buttonState={buttonState}
+          />
+        </div>
       </div>
-      <div className="question-div flex flex-col gap-6">
-        <div className="flex flex-row justify-center h-50 min-w-full bg-white rounded-lg">
+      <div className="question-div flex gap-6">
+        <div className="flex flex-row justify-center h-50 bg-white rounded-lg">
           <img
             className="self-center"
             src={`./${chosenNote.type}-${chosenNote.id}.png`}
           ></img>
         </div>
-        <div>
+        <div className="answers-div">
           <ul className="questions flex flex-col gap-2">
             {answerOptions.map((answer, index) => (
               <Notename

@@ -30,7 +30,7 @@ function App() {
   return (
     <div className={isDarkMode ? "dark" : ""}>
       <div className="h-dvh w-dvw bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col items-center justify-center">
-        <div className="w-90 p-6 flex justify-center">
+        <div className="min-w-90 p-6 flex justify-center">
           {route === "quiz" && (
             <QuizPage
               noteSettings={noteSettings}
@@ -43,7 +43,7 @@ function App() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
                   Note Game
                 </h1>
-                <div className="space-x-4 mb-10">
+                <div className="space-x-4 mt-6 mb-10">
                   <button
                     onClick={() => handleRoute("quiz")}
                     className="bg-blue-500 text-white w-30 py-3 rounded-lg shadow-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 transition"
