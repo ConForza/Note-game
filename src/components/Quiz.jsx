@@ -22,7 +22,7 @@ export default function Quiz({
         </div>
       </div>
       <div className="question-div flex gap-6">
-        <div className="flex flex-row justify-center h-50 bg-white rounded-lg w-1/2">
+        <div className="note-img flex flex-row justify-center h-50 bg-white rounded-lg">
           <img
             className="self-center"
             src={`./${chosenNote.type}-${chosenNote.id}.png`}

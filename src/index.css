@@ -94,4 +94,8 @@ footer {
     font-size: 40px;
     margin-bottom: 0;
   }
+
+  note-img {
+    width: 50%;
+  }
 }
