@@ -5,7 +5,6 @@ export default function Settings({
   handleSettingsChange,
   handleRestartQuiz,
   handleDarkMode,
-  isDarkMode,
 }) {
   return (
     <div className="border-blue-200 bg-blue-50 dark:bg-neutral-800 p-6 rounded-lg shadow-lg w-full">
@@ -98,12 +97,12 @@ export default function Settings({
             <input
               type="checkbox"
               id="darkMode"
-              name="darkMode"
+              name="isDarkMode"
               className="form-checkbox h-5 w-5 text-blue-600 
       rounded focus:ring-blue-500 dark:bg-neutral-700 
       dark:border-neutral-600 dark:checked:bg-blue-500"
-              onClick={(e) => handleDarkMode(e)}
-              checked={isDarkMode}
+              onChange={(event) => handleDarkMode(event)}
+              checked={settings.isDarkMode}
             />
             <label
               htmlFor="darkMode"

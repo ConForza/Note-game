@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuizPage from "./components/QuizPage";
 import Settings from "./components/Settings";
 
@@ -9,8 +9,8 @@ function App() {
     difficulty: "1",
     noOfQuestions: "5",
     timeLimit: "10000",
+    isDarkMode: false,
   });
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   function handleRoute(route) {
     setRoute(route);
@@ -24,11 +24,25 @@ function App() {
   }
 
   function handleDarkMode(event) {
-    setIsDarkMode(event.target.checked);
+    setNoteSettings((prevSettings) => ({
+      ...prevSettings,
+      [event.target.name]: event.target.checked,
+    }));
   }
 
+  useEffect(() => {
+    const saved = localStorage.getItem("noteGameSettings");
+    if (saved) {
+      setNoteSettings(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("noteGameSettings", JSON.stringify(noteSettings));
+  }, [noteSettings]);
+
   return (
-    <div className={isDarkMode ? "dark" : ""}>
+    <div className={noteSettings.isDarkMode ? "dark" : ""}>
       <div className="h-dvh w-dvw bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col items-center justify-center">
         <div className="inner-container min-w-90 p-6 flex justify-center">
           {route === "quiz" && (
@@ -67,7 +81,6 @@ function App() {
               handleRestartQuiz={() => handleRoute("menu")}
               handleDarkMode={handleDarkMode}
               settings={noteSettings}
-              isDarkMode={isDarkMode}
             />
           )}
         </div>
