@@ -94,7 +94,12 @@ footer {
   }
 
   .inner-container {
-    max-width: 100%;
-    min-width: 70%;
+    width: 75%;
+  }
+
+  .settings-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
   }
 }
