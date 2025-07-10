@@ -14,8 +14,8 @@ export default function Quiz({
       <div>
         <div>
           <QuestionTimer
-            onTimeout={onTimeout}
             key={answerOptions}
+            onTimeout={onTimeout}
             timeLimit={timeLimit}
             buttonState={buttonState}
           />

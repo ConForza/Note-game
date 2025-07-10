@@ -22,8 +22,12 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   const [answers, setAnswers] = useState([]);
   const [quizComplete, setQuizComplete] = useState(false);
   const [buttonState, setButtonState] = useState({});
+  const [score, setScore] = useState(null);
+  const [startTime, setStartTime] = useState(null);
+  const [responseTimes, setResponseTimes] = useState([]);
 
   function initializeNotes() {
+    setStartTime(Date.now());
     setButtonState({
       status: "enabled",
       states: { 0: "", 1: "", 2: "", 3: "" },
@@ -60,6 +64,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   }
 
   const handleAnswers = useCallback(function handleAnswers(e) {
+    const answerTime = Date.now() - startTime;
     let isAnswerCorrect = null;
     const correctAnswerIndex = answerOptions.findIndex(
       (noteName) => noteName === chosenNote.name
@@ -81,6 +86,10 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
         : (isAnswerCorrect = false);
 
       if (isAnswerCorrect) {
+        setResponseTimes((prevResponseTimes) => [
+          ...prevResponseTimes,
+          answerTime,
+        ]);
         setButtonState((prevState) => ({
           ...prevState,
           status: "disabled",
@@ -90,6 +99,10 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
           },
         }));
       } else {
+        setResponseTimes((prevResponseTimes) => [
+          ...prevResponseTimes,
+          noteSettings.timeLimit,
+        ]);
         setButtonState((prevState) => ({
           ...prevState,
           status: "disabled",
@@ -120,6 +133,22 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
     [handleAnswers]
   );
 
+  function calculateScore() {
+    const timeLimit = noteSettings.timeLimit;
+    const noOfQuestions = noteSettings.noOfQuestions;
+    const sumResponse = responseTimes.reduce(
+      (total, current) => total + current,
+      0
+    );
+    const avgResponse = Math.floor(timeLimit - sumResponse / noOfQuestions);
+    const finalScore = avgResponse * noteSettings.difficulty;
+
+    console.log(avgResponse);
+    console.log(finalScore);
+    console.log(responseTimes);
+    return finalScore;
+  }
+
   useEffect(() => {
     initializeNotes();
   }, []);
@@ -138,6 +167,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
               answers={answers}
               noteSettings={noteSettings}
               handleRestartQuiz={handleRestartQuiz}
+              calculateScore={calculateScore}
             />
           </>
         ) : (
