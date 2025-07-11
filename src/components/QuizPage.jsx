@@ -22,7 +22,6 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   const [answers, setAnswers] = useState([]);
   const [quizComplete, setQuizComplete] = useState(false);
   const [buttonState, setButtonState] = useState({});
-  const [score, setScore] = useState(null);
   const [startTime, setStartTime] = useState(null);
   const [responseTimes, setResponseTimes] = useState([]);
 
@@ -101,7 +100,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
       } else {
         setResponseTimes((prevResponseTimes) => [
           ...prevResponseTimes,
-          noteSettings.timeLimit,
+          parseInt(noteSettings.timeLimit),
         ]);
         setButtonState((prevState) => ({
           ...prevState,
@@ -129,23 +128,31 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   });
 
   const handleSkipAnswer = useCallback(
-    () => handleAnswers(null),
+    () => {
+      setResponseTimes((prevResponseTimes) => [
+          ...prevResponseTimes,
+          parseInt(noteSettings.timeLimit),
+        ]);
+      handleAnswers(null)},
     [handleAnswers]
   );
 
   function calculateScore() {
-    const timeLimit = noteSettings.timeLimit;
-    const noOfQuestions = noteSettings.noOfQuestions;
+    const timeLimit = parseInt(noteSettings.timeLimit);
+    const noOfQuestions = parseInt(noteSettings.noOfQuestions);
     const sumResponse = responseTimes.reduce(
-      (total, current) => total + current,
+      (total, current) => total + (timeLimit - current),
       0
     );
-    const avgResponse = Math.floor(timeLimit - sumResponse / noOfQuestions);
-    const finalScore = avgResponse * noteSettings.difficulty;
+    const avgResponse = sumResponse / ((noOfQuestions * 1000) / timeLimit)
+    const finalScore = (avgResponse * noteSettings.difficulty);
 
-    console.log(avgResponse);
-    console.log(finalScore);
-    console.log(responseTimes);
+    console.log(`average response: ${avgResponse}`);
+    console.log(`sum response: ${sumResponse}`);
+    console.log(`final score: ${finalScore}`);
+    console.log(`response times: ${responseTimes}`);
+    console.log(`time limit: ${timeLimit}`);
+    console.log(`no of questions: ${noOfQuestions}`);
     return finalScore;
   }
 
