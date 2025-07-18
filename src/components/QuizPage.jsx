@@ -127,26 +127,37 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
     return () => clearTimeout(timer);
   });
 
-  const handleSkipAnswer = useCallback(
-    () => {
-      setResponseTimes((prevResponseTimes) => [
-          ...prevResponseTimes,
-          parseInt(noteSettings.timeLimit),
-        ]);
-      handleAnswers(null)},
-    [handleAnswers]
-  );
+  const handleSkipAnswer = useCallback(() => {
+    setResponseTimes((prevResponseTimes) => [
+      ...prevResponseTimes,
+      parseInt(noteSettings.timeLimit),
+    ]);
+    handleAnswers(null);
+  }, [handleAnswers]);
 
   function calculateScore() {
+    let timeMultiplier = 0;
     const timeLimit = parseInt(noteSettings.timeLimit);
+    switch (timeLimit) {
+      case 10000:
+        timeMultiplier = 1000;
+        break;
+      case 5000:
+        timeMultiplier = 10000;
+        break;
+      case 2500:
+        timeMultiplier = 100000;
+    }
     const noOfQuestions = parseInt(noteSettings.noOfQuestions);
     const sumResponse = responseTimes.reduce(
       (total, current) => total + (timeLimit - current),
       0
     );
-    const avgResponse = sumResponse / ((noOfQuestions * 1000) / timeLimit)
-    const finalScore = (avgResponse * noteSettings.difficulty);
+    const avgResponse =
+      (sumResponse / (noOfQuestions * timeLimit)) * timeMultiplier;
+    const finalScore = avgResponse * noteSettings.difficulty;
 
+    console.log(`time multiplier: ${timeMultiplier}`);
     console.log(`average response: ${avgResponse}`);
     console.log(`sum response: ${sumResponse}`);
     console.log(`final score: ${finalScore}`);
