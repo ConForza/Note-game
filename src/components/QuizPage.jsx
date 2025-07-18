@@ -59,7 +59,11 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
       selectedNote.name,
     ]);
     setAnswerOptions(noteShuffler(shuffledLetters));
-    setNoteList(finalNotes.filter((note) => note.id != selectedNote.id));
+    if (finalNotes.length > 1) {
+      setNoteList(finalNotes.filter((note) => note.id != selectedNote.id));
+    } else {
+      setNoteList(NOTES);
+    }
   }
 
   const handleAnswers = useCallback(function handleAnswers(e) {
