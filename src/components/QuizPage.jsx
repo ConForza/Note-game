@@ -48,6 +48,8 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
       }
     }
 
+    console.log(finalNotes);
+
     const shuffledNoteList = noteShuffler(finalNotes);
     const selectedNote = shuffledNoteList[0];
     setChosenNote(selectedNote);
@@ -62,7 +64,7 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
     if (finalNotes.length > 1) {
       setNoteList(finalNotes.filter((note) => note.id != selectedNote.id));
     } else {
-      setNoteList(NOTES);
+      setNoteList(NOTES.filter((note) => note.id != selectedNote.id));
     }
   }
 
