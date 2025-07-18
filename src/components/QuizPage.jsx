@@ -155,15 +155,8 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
     );
     const avgResponse =
       (sumResponse / (noOfQuestions * timeLimit)) * timeMultiplier;
-    const finalScore = avgResponse * noteSettings.difficulty;
+    const finalScore = Math.floor(avgResponse * noteSettings.difficulty);
 
-    console.log(`time multiplier: ${timeMultiplier}`);
-    console.log(`average response: ${avgResponse}`);
-    console.log(`sum response: ${sumResponse}`);
-    console.log(`final score: ${finalScore}`);
-    console.log(`response times: ${responseTimes}`);
-    console.log(`time limit: ${timeLimit}`);
-    console.log(`no of questions: ${noOfQuestions}`);
     return finalScore;
   }
 
