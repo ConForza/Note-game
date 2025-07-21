@@ -11,6 +11,7 @@ function App() {
     timeLimit: "10000",
     isDarkMode: false,
   });
+  const [highScore, setHighScore] = useState(0);
 
   function handleRoute(route) {
     setRoute(route);
@@ -30,10 +31,23 @@ function App() {
     }));
   }
 
+  function handleHighScore(score) {
+    if (score > highScore || score === 0) {
+      setHighScore(score);
+      localStorage.setItem("noteGameHighScore", score);
+    }
+  }
+
   useEffect(() => {
-    const saved = localStorage.getItem("noteGameSettings");
-    if (saved) {
-      setNoteSettings(JSON.parse(saved));
+    const savedSettings = localStorage.getItem("noteGameSettings");
+    const savedHighScore = parseInt(localStorage.getItem("noteGameHighScore"));
+    if (savedSettings) {
+      setNoteSettings(JSON.parse(savedSettings));
+    }
+    if (savedHighScore) {
+      setHighScore(savedHighScore);
+    } else {
+      setHighScore(0);
     }
   }, []);
 
@@ -49,6 +63,8 @@ function App() {
             <QuizPage
               noteSettings={noteSettings}
               handleRestartQuiz={() => handleRoute("menu")}
+              handleHighScore={handleHighScore}
+              highScore={highScore}
             />
           )}
           {route === "menu" && (
@@ -81,6 +97,7 @@ function App() {
               handleRestartQuiz={() => handleRoute("menu")}
               handleDarkMode={handleDarkMode}
               settings={noteSettings}
+              handleHighScore={handleHighScore}
             />
           )}
         </div>

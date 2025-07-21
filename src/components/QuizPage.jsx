@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Quiz from "./Quiz";
 import Gameover from "./Gameover";
 import { NOTES } from "../Notes";
@@ -15,7 +15,12 @@ function noteShuffler(notes) {
   return shuffledNotes;
 }
 
-function QuizPage({ noteSettings, handleRestartQuiz }) {
+function QuizPage({
+  noteSettings,
+  handleRestartQuiz,
+  handleHighScore,
+  highScore,
+}) {
   const [noteList, setNoteList] = useState(NOTES);
   const [chosenNote, setChosenNote] = useState({});
   const [answerOptions, setAnswerOptions] = useState([]);
@@ -24,8 +29,10 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
   const [buttonState, setButtonState] = useState({});
   const [startTime, setStartTime] = useState(null);
   const [responseTimes, setResponseTimes] = useState([]);
+  const prevHighScore = useRef();
 
   function initializeNotes() {
+    prevHighScore.current = highScore;
     setStartTime(Date.now());
     setButtonState({
       status: "enabled",
@@ -47,8 +54,6 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
         finalNotes = noteList.filter((note) => note.type === noteSettings.mode);
       }
     }
-
-    console.log(finalNotes);
 
     const shuffledNoteList = noteShuffler(finalNotes);
     const selectedNote = shuffledNoteList[0];
@@ -163,6 +168,8 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
       (sumResponse / (noOfQuestions * timeLimit)) * timeMultiplier;
     const finalScore = Math.floor(avgResponse * noteSettings.difficulty);
 
+    handleHighScore(finalScore);
+
     return finalScore;
   }
 
@@ -185,6 +192,9 @@ function QuizPage({ noteSettings, handleRestartQuiz }) {
               noteSettings={noteSettings}
               handleRestartQuiz={handleRestartQuiz}
               calculateScore={calculateScore}
+              highScore={highScore}
+              handleHighScore={handleHighScore}
+              prevHighScore={prevHighScore}
             />
           </>
         ) : (

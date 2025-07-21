@@ -5,6 +5,7 @@ export default function Settings({
   handleSettingsChange,
   handleRestartQuiz,
   handleDarkMode,
+  handleHighScore,
 }) {
   return (
     <div className="border-blue-200 bg-blue-50 dark:bg-neutral-800 p-6 rounded-lg shadow-lg w-full">
@@ -113,8 +114,17 @@ export default function Settings({
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-end">
-        <RestartBtn handleRestart={handleRestartQuiz}>OK</RestartBtn>
+      <div className="flex flex-row justify-between">
+        <button
+          className="restart-btn bg-gray-300 text-gray-800 px-6 py-1 mt-8 rounded-lg shadow-lg hover:bg-gray-400 dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-100 transition"
+          onClick={() => {
+            handleHighScore(0);
+            localStorage.removeItem("noteGameHighScore");
+          }}
+        >
+          Reset Scores
+        </button>
+        <RestartBtn handleRestart={handleRestartQuiz}>Save</RestartBtn>
       </div>
     </div>
   );
