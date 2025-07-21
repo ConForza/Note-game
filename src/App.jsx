@@ -32,9 +32,14 @@ function App() {
   }
 
   function handleHighScore(score) {
-    if (score > highScore || score === 0) {
-      setHighScore(score);
-      localStorage.setItem("noteGameHighScore", score);
+    if (score === "reset") {
+      setHighScore(0);
+      localStorage.removeItem("noteGameHighScore");
+    } else {
+      if (score > highScore) {
+        setHighScore(score);
+        localStorage.setItem("noteGameHighScore", score);
+      }
     }
   }
 

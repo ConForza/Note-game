@@ -9,6 +9,7 @@ export default function Gameover({
   prevHighScore,
 }) {
   const score = calculateScore();
+  const isHighScore = score > prevHighScore.current;
 
   return (
     <div>
@@ -20,9 +21,15 @@ export default function Gameover({
           answers.filter((isAnswerCorrect) => isAnswerCorrect).length
         } of ${noteSettings.noOfQuestions} questions correct`}
       </h4>
-      <p className="text-center font-bold">Your Score: {score}</p>
-      <p className="text-center">Highest Score: {highScore}</p>
-      {score > prevHighScore.current && (
+      <p className="text-center font-bold text-xl mb-2">Your Score: {score}</p>
+      {isHighScore ? (
+        <p className="text-center">
+          Previous High Score: {prevHighScore.current}
+        </p>
+      ) : (
+        <p className="text-center">High Score: {highScore}</p>
+      )}
+      {isHighScore && (
         <h1 className="text-3xl font-bold text-center text-red-600 mt-4 mb-4">
           NEW HIGH SCORE
         </h1>
