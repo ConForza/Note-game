@@ -120,6 +120,7 @@ export default function Settings({
           onClick={() => {
             handleHighScore("reset");
             localStorage.removeItem("noteGameHighScore");
+            alert("Scores reset");
           }}
         >
           Reset Scores
