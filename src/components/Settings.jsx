@@ -119,7 +119,7 @@ export default function Settings({
           className="restart-btn bg-gray-300 text-gray-800 px-6 py-1 mt-8 rounded-lg shadow-lg hover:bg-gray-400 dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-100 transition"
           onClick={() => {
             const confirmReset = window.confirm(
-              "Are you sure you want to reset the high score?"
+              "Are you sure you want to reset the scores?"
             );
             if (confirmReset) {
               handleHighScore("reset");
@@ -130,7 +130,7 @@ export default function Settings({
         >
           Reset Scores
         </button>
-        <RestartBtn handleRestart={handleRestartQuiz}>Save</RestartBtn>
+        <RestartBtn handleRestart={handleRestartQuiz}>Back</RestartBtn>
       </div>
     </div>
   );
