@@ -1,4 +1,6 @@
 import RestartBtn from "./RestartBtn";
+import ResetDialog from "./ResetDialog";
+import { useState } from "react";
 
 export default function Settings({
   settings,
@@ -7,6 +9,12 @@ export default function Settings({
   handleDarkMode,
   handleHighScore,
 }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  function handleDialog(state) {
+    setIsDialogOpen(state);
+  }
+
   return (
     <div className="border-blue-200 bg-blue-50 dark:bg-neutral-800 p-6 rounded-lg shadow-lg w-full">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
@@ -118,20 +126,27 @@ export default function Settings({
         <button
           className="restart-btn bg-gray-300 text-gray-800 px-6 py-1 mt-8 rounded-lg shadow-lg hover:bg-gray-400 dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-100 transition"
           onClick={() => {
-            const confirmReset = window.confirm(
-              "Are you sure you want to reset the scores?"
-            );
-            if (confirmReset) {
-              handleHighScore("reset");
-              localStorage.removeItem("noteGameHighScore");
-              alert("Scores have been reset");
-            }
+            // const confirmReset = window.confirm(
+            //   "Are you sure you want to reset the scores?"
+            // );
+            // if (confirmReset) {
+            //   handleHighScore("reset");
+            //   localStorage.removeItem("noteGameHighScore");
+            //   alert("Scores have been reset");
+            // }
+            setIsDialogOpen(true);
           }}
         >
           Reset Scores
         </button>
         <RestartBtn handleRestart={handleRestartQuiz}>Back</RestartBtn>
       </div>
+      <ResetDialog
+        isDialogOpen={isDialogOpen}
+        handleDialog={handleDialog}
+        noteSettings={settings}
+        handleHighScore={handleHighScore}
+      />
     </div>
   );
 }
