@@ -19,7 +19,7 @@ function ResetDialog({
         className={`relative z-50 ${noteSettings.isDarkMode ? "dark" : ""}`}
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 p-12">
+          <DialogPanel className="max-w-lg space-y-4 border rounded-lg bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 p-12">
             <DialogTitle className="font-bold">Reset Scores</DialogTitle>
             <Description>
               This will reset your High Score. Do you want to continue?

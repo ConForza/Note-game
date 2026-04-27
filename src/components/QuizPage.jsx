@@ -1,19 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Quiz from "./Quiz";
 import Gameover from "./Gameover";
-import { NOTES } from "../Notes";
+import { NOTES } from "../data/notes";
 import RestartBtn from "./RestartBtn";
+import shuffleItems from "../utils/gameLogic";
 
 const LETTERS = ["A", "B", "C", "D", "E", "F", "G"];
-
-function noteShuffler(notes) {
-  let shuffledNotes = notes
-    .map((note) => ({ note, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ note }) => note);
-
-  return shuffledNotes;
-}
 
 function QuizPage({
   noteSettings,
@@ -48,24 +40,24 @@ function QuizPage({
     } else {
       if (noteSettings.difficulty === "1") {
         finalNotes = noteList.filter(
-          (note) => note.type === noteSettings.mode && note.difficulty === "1"
+          (note) => note.type === noteSettings.mode && note.difficulty === "1",
         );
       } else {
         finalNotes = noteList.filter((note) => note.type === noteSettings.mode);
       }
     }
 
-    const shuffledNoteList = noteShuffler(finalNotes);
+    const shuffledNoteList = shuffleItems(finalNotes);
     const selectedNote = shuffledNoteList[0];
     setChosenNote(selectedNote);
     const remainingLetters = LETTERS.filter(
-      (letter) => letter != selectedNote.name
+      (letter) => letter != selectedNote.name,
     ).slice(0, 3);
-    let shuffledLetters = noteShuffler([
+    let shuffledLetters = shuffleItems([
       ...remainingLetters,
       selectedNote.name,
     ]);
-    setAnswerOptions(noteShuffler(shuffledLetters));
+    setAnswerOptions(shuffleItems(shuffledLetters));
     if (finalNotes.length > 1) {
       setNoteList(finalNotes.filter((note) => note.id != selectedNote.id));
     } else {
@@ -77,7 +69,7 @@ function QuizPage({
     const answerTime = Date.now() - startTime;
     let isAnswerCorrect = null;
     const correctAnswerIndex = answerOptions.findIndex(
-      (noteName) => noteName === chosenNote.name
+      (noteName) => noteName === chosenNote.name,
     );
     if (e === null) {
       setButtonState((prevState) => ({
@@ -162,7 +154,7 @@ function QuizPage({
     const noOfQuestions = parseInt(noteSettings.noOfQuestions);
     const sumResponse = responseTimes.reduce(
       (total, current) => total + (timeLimit - current),
-      0
+      0,
     );
     const avgResponse =
       (sumResponse / (noOfQuestions * timeLimit)) * timeMultiplier;

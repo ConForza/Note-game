@@ -1,5 +1,6 @@
 import Notename from "./Notename";
 import QuestionTimer from "./QuestionTimer";
+import Keyboard from "./Keyboard";
 
 export default function Quiz({
   answerOptions,
@@ -42,6 +43,7 @@ export default function Quiz({
           </ul>
         </div>
       </div>
+      <Keyboard />
     </div>
   );
 }

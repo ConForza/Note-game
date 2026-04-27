@@ -64,6 +64,28 @@ footer {
   text-align: center;
 }
 
+.white-key {
+  background-color: white;
+  height: 20rem;
+  width: 5rem;
+  border: 1px solid black;
+  position: relative;
+  z-index: 1;
+}
+
+.black-key {
+  background-color: black;
+  height: 12rem;
+  width: 3rem;
+  z-index: 2;
+  margin: 0 -25px 0 -25px;
+}
+
+.piano-keys {
+  position: relative;
+  cursor: pointer;
+}
+
 @media (orientation: landscape) {
   .question-div {
     flex-direction: row;
