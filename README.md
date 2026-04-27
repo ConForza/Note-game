@@ -1,8 +1,34 @@
-# React + Vite
+# Note Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app for practising music note recognition.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Note identification quiz
+
+- Multiple-choice answers
+
+- Timer-based questions
+
+- Score tracking
+
+- Dark mode
+
+- Settings for game options
+
+## Tech Stack
+
+- React
+
+- Vite
+
+- Tailwind CSS
+
+## Running Locally
+
+```bash
+
+npm install
+
+npm run dev
+```
