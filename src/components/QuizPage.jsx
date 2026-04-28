@@ -3,9 +3,8 @@ import Quiz from "./Quiz";
 import Gameover from "./Gameover";
 import { NOTES } from "../data/notes";
 import RestartBtn from "./RestartBtn";
-import shuffleItems from "../utils/gameLogic";
-
-const LETTERS = ["A", "B", "C", "D", "E", "F", "G"];
+import { shuffleItems, filterNotesBySettings } from "../utils/gameLogic";
+import { LETTERS } from "../data/musicConstants";
 
 function QuizPage({
   noteSettings,
@@ -30,23 +29,8 @@ function QuizPage({
       status: "enabled",
       states: { 0: "", 1: "", 2: "", 3: "" },
     });
-    let finalNotes;
-    if (noteSettings.mode === "all") {
-      if (noteSettings.difficulty === "1") {
-        finalNotes = noteList.filter((note) => note.difficulty === "1");
-      } else {
-        finalNotes = noteList;
-      }
-    } else {
-      if (noteSettings.difficulty === "1") {
-        finalNotes = noteList.filter(
-          (note) => note.type === noteSettings.mode && note.difficulty === "1",
-        );
-      } else {
-        finalNotes = noteList.filter((note) => note.type === noteSettings.mode);
-      }
-    }
 
+    const finalNotes = filterNotesBySettings(noteList, noteSettings);
     const shuffledNoteList = shuffleItems(finalNotes);
     const selectedNote = shuffledNoteList[0];
     setChosenNote(selectedNote);
