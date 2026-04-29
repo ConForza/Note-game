@@ -1,4 +1,4 @@
-import Notename from "./Notename";
+import AnswerOptions from "./AnswerOptions";
 import QuestionTimer from "./QuestionTimer";
 import Keyboard from "./Keyboard";
 
@@ -27,21 +27,13 @@ export default function Quiz({
           <img
             className="self-center"
             src={`./${chosenNote.type}-${chosenNote.id}.png`}
-          ></img>
+          />
         </div>
-        <div className="answers-div">
-          <ul className="questions flex flex-col gap-2">
-            {answerOptions.map((answer, index) => (
-              <Notename
-                key={answer}
-                id={index}
-                answer={answer}
-                handleAnswers={handleAnswers}
-                buttonState={buttonState}
-              />
-            ))}
-          </ul>
-        </div>
+        <AnswerOptions
+          answerOptions={answerOptions}
+          handleAnswers={handleAnswers}
+          buttonState={buttonState}
+        />
       </div>
       <Keyboard />
     </div>
