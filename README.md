@@ -1,34 +1,32 @@
 # Note Game
 
-A React app for practising music note recognition.
+A React-based music theory game for practising note recognition.
 
 ## Features
 
-- Note identification quiz
-
-- Multiple-choice answers
-
-- Timer-based questions
-
-- Score tracking
-
+- Multiple-choice note identification
+- Treble/bass/all note modes
+- Difficulty settings
+- Timed questions
+- Score and high-score tracking
 - Dark mode
-
-- Settings for game options
+- Keyboard display
 
 ## Tech Stack
 
 - React
-
 - Vite
-
 - Tailwind CSS
 
 ## Running Locally
 
 ```bash
-
 npm install
-
 npm run dev
 ```
+
+## Project Structure
+
+- src/components/ – reusable UI components
+- src/data/ – static music data and constants
+- src/utils/ – reusable game logic helpers
