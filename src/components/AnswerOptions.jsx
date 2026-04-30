@@ -2,7 +2,7 @@ import Notename from "./Notename";
 
 export default function AnswerOptions({
   answerOptions,
-  handleAnswers,
+  handleAnswerSelect,
   buttonState,
 }) {
   return (
@@ -13,7 +13,7 @@ export default function AnswerOptions({
             key={answer}
             id={index}
             answer={answer}
-            handleAnswers={handleAnswers}
+            handleAnswerSelect={handleAnswerSelect}
             buttonState={buttonState}
           />
         ))}

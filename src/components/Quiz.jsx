@@ -4,8 +4,8 @@ import Keyboard from "./Keyboard";
 
 export default function Quiz({
   answerOptions,
-  chosenNote,
-  handleAnswers,
+  currentNote,
+  handleAnswerSelect,
   buttonState,
   timeLimit,
   onTimeout,
@@ -26,12 +26,12 @@ export default function Quiz({
         <div className="note-img flex flex-row justify-center h-50 bg-white rounded-lg">
           <img
             className="self-center"
-            src={`./${chosenNote.type}-${chosenNote.id}.png`}
+            src={`./${currentNote.type}-${currentNote.id}.png`}
           />
         </div>
         <AnswerOptions
           answerOptions={answerOptions}
-          handleAnswers={handleAnswers}
+          handleAnswerSelect={handleAnswerSelect}
           buttonState={buttonState}
         />
       </div>

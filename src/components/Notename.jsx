@@ -1,4 +1,9 @@
-export default function Notename({ answer, handleAnswers, buttonState, id }) {
+export default function Notename({
+  answer,
+  handleAnswerSelect,
+  buttonState,
+  id,
+}) {
   return (
     <div className="flex flex-col gap-3">
       <li>
@@ -12,7 +17,7 @@ export default function Notename({ answer, handleAnswers, buttonState, id }) {
               transition-colors ${buttonState["states"][id]}`}
           id={id}
           disabled={buttonState["status"] === "disabled"}
-          onClick={(e) => handleAnswers(e)}
+          onClick={(e) => handleAnswerSelect(e)}
         >
           {answer}
         </button>

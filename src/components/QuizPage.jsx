@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+
 import Quiz from "./Quiz";
 import Gameover from "./Gameover";
-import { NOTES } from "../data/notes";
 import RestartBtn from "./RestartBtn";
-import { shuffleItems, filterNotesBySettings } from "../utils/gameLogic";
+
+import { NOTES } from "../data/notes";
 import { LETTERS } from "../data/musicConstants";
+
+import { shuffleItems, filterNotesBySettings } from "../utils/gameLogic";
 
 function QuizPage({
   noteSettings,
@@ -12,8 +15,8 @@ function QuizPage({
   handleHighScore,
   highScore,
 }) {
-  const [noteList, setNoteList] = useState(NOTES);
-  const [chosenNote, setChosenNote] = useState({});
+  const [availableNotes, setavailableNotes] = useState(NOTES);
+  const [currentNote, setcurrentNote] = useState({});
   const [answerOptions, setAnswerOptions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [quizComplete, setQuizComplete] = useState(false);
@@ -22,7 +25,7 @@ function QuizPage({
   const [responseTimes, setResponseTimes] = useState([]);
   const prevHighScore = useRef();
 
-  function initializeNotes() {
+  function startNewQuestion() {
     prevHighScore.current = highScore;
     setStartTime(Date.now());
     setButtonState({
@@ -30,10 +33,10 @@ function QuizPage({
       states: { 0: "", 1: "", 2: "", 3: "" },
     });
 
-    const finalNotes = filterNotesBySettings(noteList, noteSettings);
-    const shuffledNoteList = shuffleItems(finalNotes);
-    const selectedNote = shuffledNoteList[0];
-    setChosenNote(selectedNote);
+    const finalNotes = filterNotesBySettings(availableNotes, noteSettings);
+    const shuffledavailableNotes = shuffleItems(finalNotes);
+    const selectedNote = shuffledavailableNotes[0];
+    setcurrentNote(selectedNote);
     const remainingLetters = LETTERS.filter(
       (letter) => letter != selectedNote.name,
     ).slice(0, 3);
@@ -43,17 +46,19 @@ function QuizPage({
     ]);
     setAnswerOptions(shuffleItems(shuffledLetters));
     if (finalNotes.length > 1) {
-      setNoteList(finalNotes.filter((note) => note.id != selectedNote.id));
+      setavailableNotes(
+        finalNotes.filter((note) => note.id != selectedNote.id),
+      );
     } else {
-      setNoteList(NOTES.filter((note) => note.id != selectedNote.id));
+      setavailableNotes(NOTES.filter((note) => note.id != selectedNote.id));
     }
   }
 
-  const handleAnswers = useCallback(function handleAnswers(e) {
+  const handleAnswerSelect = useCallback(function handleAnswerSelect(e) {
     const answerTime = Date.now() - startTime;
     let isAnswerCorrect = null;
     const correctAnswerIndex = answerOptions.findIndex(
-      (noteName) => noteName === chosenNote.name,
+      (noteName) => noteName === currentNote.name,
     );
     if (e === null) {
       setButtonState((prevState) => ({
@@ -67,7 +72,7 @@ function QuizPage({
     } else {
       const answer = e.target;
       const answerId = answer.id;
-      answer.innerText === chosenNote.name
+      answer.innerText === currentNote.name
         ? (isAnswerCorrect = true)
         : (isAnswerCorrect = false);
 
@@ -107,7 +112,7 @@ function QuizPage({
       if (answers.length + 1 === parseInt(noteSettings.noOfQuestions)) {
         setQuizComplete(true);
       } else {
-        initializeNotes();
+        startNewQuestion();
       }
     }, 1500);
 
@@ -119,8 +124,8 @@ function QuizPage({
       ...prevResponseTimes,
       parseInt(noteSettings.timeLimit),
     ]);
-    handleAnswers(null);
-  }, [handleAnswers]);
+    handleAnswerSelect(null);
+  }, [handleAnswerSelect]);
 
   function calculateScore() {
     let timeMultiplier = 0;
@@ -150,7 +155,7 @@ function QuizPage({
   }
 
   useEffect(() => {
-    initializeNotes();
+    startNewQuestion();
   }, []);
 
   return (
@@ -177,8 +182,8 @@ function QuizPage({
           <div className="quiz flex flex-col gap-3">
             <Quiz
               answerOptions={answerOptions}
-              chosenNote={chosenNote}
-              handleAnswers={handleAnswers}
+              currentNote={currentNote}
+              handleAnswerSelect={handleAnswerSelect}
               buttonState={buttonState}
               timeLimit={parseInt(noteSettings.timeLimit)}
               onTimeout={handleSkipAnswer}
