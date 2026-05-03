@@ -9,6 +9,20 @@ import { LETTERS } from "../data/musicConstants";
 
 import { shuffleItems, filterNotesBySettings } from "../utils/gameLogic";
 
+const initialButtonState = {
+  status: "enabled",
+  answerStates: { 0: "", 1: "", 2: "", 3: "" },
+  keyboardStates: {
+    C: "",
+    D: "",
+    E: "",
+    F: "",
+    G: "",
+    A: "",
+    B: "",
+  },
+};
+
 function QuizPage({
   noteSettings,
   handleRestartQuiz,
@@ -20,7 +34,7 @@ function QuizPage({
   const [answerOptions, setAnswerOptions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [quizComplete, setQuizComplete] = useState(false);
-  const [buttonState, setButtonState] = useState({});
+  const [buttonState, setButtonState] = useState(initialButtonState);
   const [startTime, setStartTime] = useState(null);
   const [responseTimes, setResponseTimes] = useState([]);
   const prevHighScore = useRef();
@@ -30,7 +44,16 @@ function QuizPage({
     setStartTime(Date.now());
     setButtonState({
       status: "enabled",
-      states: { 0: "", 1: "", 2: "", 3: "" },
+      answerStates: { 0: "", 1: "", 2: "", 3: "" },
+      keyboardStates: {
+        C: "",
+        D: "",
+        E: "",
+        F: "",
+        G: "",
+        A: "",
+        B: "",
+      },
     });
 
     const finalNotes = filterNotesBySettings(availableNotes, noteSettings);
@@ -54,70 +77,85 @@ function QuizPage({
     }
   }
 
-  const handleAnswerSelect = useCallback(function handleAnswerSelect(e) {
-    const answerTime = Date.now() - startTime;
-    let isAnswerCorrect = null;
-    const correctAnswerIndex = answerOptions.findIndex(
-      (noteName) => noteName === currentNote.name,
-    );
-    if (e === null) {
-      setButtonState((prevState) => ({
-        ...prevState,
-        status: "disabled",
-        states: {
-          ...prevState.states,
-          [correctAnswerIndex]: "highlight-answer",
-        },
-      }));
-    } else {
-      const answer = e.target;
-      const answerId = answer.id;
-      answer.innerText === currentNote.name
-        ? (isAnswerCorrect = true)
-        : (isAnswerCorrect = false);
-
-      if (isAnswerCorrect) {
-        setResponseTimes((prevResponseTimes) => [
-          ...prevResponseTimes,
-          answerTime,
-        ]);
+  const handleAnswerSelect = useCallback(
+    function handleAnswerSelect(selectedNoteName, answerId) {
+      console.log("Selected Note:", selectedNoteName);
+      console.log("Answer ID:", answerId);
+      const answerTime = Date.now() - startTime;
+      let isAnswerCorrect = null;
+      const correctAnswerIndex = answerOptions.findIndex(
+        (noteName) => noteName === currentNote.name,
+      );
+      if (selectedNoteName === null) {
         setButtonState((prevState) => ({
           ...prevState,
           status: "disabled",
-          states: {
-            ...prevState.states,
-            [correctAnswerIndex]: "correct-answer",
-          },
-        }));
-      } else {
-        setResponseTimes((prevResponseTimes) => [
-          ...prevResponseTimes,
-          parseInt(noteSettings.timeLimit),
-        ]);
-        setButtonState((prevState) => ({
-          ...prevState,
-          status: "disabled",
-          states: {
-            ...prevState.states,
-            [answerId]: "incorrect-answer",
+          answerStates: {
+            ...prevState.answerStates,
             [correctAnswerIndex]: "highlight-answer",
           },
+          keyboardStates: {
+            ...prevState.keyboardStates,
+            [currentNote.name]: "highlight-answer",
+          },
         }));
-      }
-    }
-
-    const timer = setTimeout(() => {
-      setAnswers((prevAnswers) => [...prevAnswers, isAnswerCorrect]);
-
-      if (answers.length + 1 === parseInt(noteSettings.noOfQuestions)) {
-        setQuizComplete(true);
       } else {
-        startNewQuestion();
-      }
-    }, 1500);
+        selectedNoteName === currentNote.name
+          ? (isAnswerCorrect = true)
+          : (isAnswerCorrect = false);
 
-    return () => clearTimeout(timer);
-  });
+        if (isAnswerCorrect) {
+          setResponseTimes((prevResponseTimes) => [
+            ...prevResponseTimes,
+            answerTime,
+          ]);
+          setButtonState((prevState) => ({
+            ...prevState,
+            status: "disabled",
+            answerStates: {
+              ...prevState.answerStates,
+              [correctAnswerIndex]: "correct-answer",
+            },
+            keyboardStates: {
+              ...prevState.keyboardStates,
+              [currentNote.name]: "correct-answer",
+            },
+          }));
+        } else {
+          setResponseTimes((prevResponseTimes) => [
+            ...prevResponseTimes,
+            parseInt(noteSettings.timeLimit),
+          ]);
+          setButtonState((prevState) => ({
+            ...prevState,
+            status: "disabled",
+            answerStates: {
+              ...prevState.answerStates,
+              [answerId]: "incorrect-answer",
+              [correctAnswerIndex]: "highlight-answer",
+            },
+            keyboardStates: {
+              ...prevState.keyboardStates,
+              [selectedNoteName]: "incorrect-answer",
+              [currentNote.name]: "highlight-answer",
+            },
+          }));
+        }
+      }
+
+      const timer = setTimeout(() => {
+        setAnswers((prevAnswers) => [...prevAnswers, isAnswerCorrect]);
+
+        if (answers.length + 1 === parseInt(noteSettings.noOfQuestions)) {
+          setQuizComplete(true);
+        } else {
+          startNewQuestion();
+        }
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    },
+  );
 
   const handleSkipAnswer = useCallback(() => {
     setResponseTimes((prevResponseTimes) => [

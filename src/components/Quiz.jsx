@@ -34,8 +34,13 @@ export default function Quiz({
           handleAnswerSelect={handleAnswerSelect}
           buttonState={buttonState}
         />
+        <div className="keyboard-container">
+          <Keyboard
+            handleAnswerSelect={handleAnswerSelect}
+            buttonState={buttonState}
+          />
+        </div>
       </div>
-      <Keyboard />
     </div>
   );
 }

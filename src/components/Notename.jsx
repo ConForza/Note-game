@@ -14,10 +14,10 @@ export default function Notename({
               text-blue-700 dark:text-neutral-100 
               font-bold font-sans rounded-2xl shadow-sm 
               hover:bg-blue-100 dark:hover:bg-neutral-600 
-              transition-colors ${buttonState["states"][id]}`}
+              transition-colors ${buttonState["answerStates"][id]}`}
           id={id}
           disabled={buttonState["status"] === "disabled"}
-          onClick={(e) => handleAnswerSelect(e)}
+          onClick={(e) => handleAnswerSelect(e.target.innerText, e.target.id)}
         >
           {answer}
         </button>
