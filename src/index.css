@@ -79,6 +79,18 @@ footer {
 }
 
 @media (orientation: landscape) {
+  html,
+  body,
+  #root {
+    margin: 0;
+    padding: 0;
+    background-color: #ffefd9;
+  }
+
+  .inner-container {
+    margin-top: 0;
+  }
+
   .question-div {
     flex-direction: row;
     align-items: center;
