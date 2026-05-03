@@ -13,9 +13,11 @@ body,
 
 html {
   position: static;
+  overflow-y: hidden;
 }
 
 body {
+  overflow: hidden;
   touch-action: none;
 }
 
@@ -76,7 +78,11 @@ footer {
   display: none;
 }
 
-@media (orientation: landscape) {
+.answers-div {
+  display: block;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
   html,
   body,
   #root {
