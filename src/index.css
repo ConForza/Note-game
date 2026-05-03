@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-color: #ffefd9; /* match your app background */
+}
+
 html {
   position: static;
   overflow-y: hidden;
@@ -151,6 +161,7 @@ footer {
     position: relative;
     cursor: pointer;
   }
+
   .correct-answer {
     background-color: #6bd090;
   }
