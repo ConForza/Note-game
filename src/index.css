@@ -82,7 +82,7 @@ footer {
   display: block;
 }
 
-@media (orientation: landscape) and (max-height: 500px) {
+@media (orientation: landscape) and (max-height: 1100px) {
   html,
   body,
   #root {
