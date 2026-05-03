@@ -13,11 +13,9 @@ body,
 
 html {
   position: static;
-  overflow-y: hidden;
 }
 
 body {
-  overflow: hidden;
   touch-action: none;
 }
 
