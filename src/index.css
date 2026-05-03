@@ -75,7 +75,16 @@ footer {
 }
 
 .keyboard-container {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.answers-div {
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (orientation: landscape) {
@@ -99,10 +108,19 @@ footer {
   }
 
   .answers-div {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   .keyboard-container {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
     display: flex;
     width: 45%;
     justify-content: center;
