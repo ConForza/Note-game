@@ -73,45 +73,43 @@ function App() {
             />
           )}
           {route === "menu" && (
-            <>
-              <div className="text-center">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
-                  Note Game
-                </h1>
+            <div className="text-center">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
+                Note Game
+              </h1>
 
-                <div className="space-x-4 mt-6 mb-10">
-                  <button
-                    onClick={() => handleRoute("quiz")}
-                    className="bg-blue-500 text-white w-30 py-3 rounded-lg shadow-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 transition"
-                  >
-                    Start
-                  </button>
+              <div className="space-x-4 mt-6 mb-10">
+                <button
+                  onClick={() => handleRoute("quiz")}
+                  className="bg-blue-500 text-white w-30 py-3 rounded-lg shadow-lg hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 transition"
+                >
+                  Start
+                </button>
 
-                  <button
-                    onClick={() => handleRoute("settings")}
-                    className="bg-gray-300 text-gray-800 w-30 py-3 rounded-lg shadow-lg dark:bg-neutral-700 dark:text-gray-100 dark:hover:bg-neutral-600 hover:bg-gray-400 transition"
-                  >
-                    Settings
-                  </button>
-                </div>
+                <button
+                  onClick={() => handleRoute("settings")}
+                  className="bg-gray-300 text-gray-800 w-30 py-3 rounded-lg shadow-lg dark:bg-neutral-700 dark:text-gray-100 dark:hover:bg-neutral-600 hover:bg-gray-400 transition"
+                >
+                  Settings
+                </button>
               </div>
-            )}
+            </div>
+          )}
 
-            {route === "settings" && (
-              <Settings
-                handleSettingsChange={handleSettingsChange}
-                handleRestartQuiz={() => handleRoute("menu")}
-                handleDarkMode={handleDarkMode}
-                settings={noteSettings}
-                handleHighScore={handleHighScore}
-              />
-            )}
-          </div>
-        </main>
+          {route === "settings" && (
+            <Settings
+              handleSettingsChange={handleSettingsChange}
+              handleRestartQuiz={() => handleRoute("menu")}
+              handleDarkMode={handleDarkMode}
+              settings={noteSettings}
+              handleHighScore={handleHighScore}
+            />
+          )}
 
-        {route === "menu" && (
-          <footer className="app-footer">Gary O&apos;Shea, 2025</footer>
-        )}
+          {route === "menu" && (
+            <footer className="app-footer">Gary O'Shea, 2025</footer>
+          )}
+        </div>
       </div>
     </div>
   );
