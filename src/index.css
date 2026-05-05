@@ -11,6 +11,12 @@ body,
   background-color: #ffedd5;
 }
 
+.dark,
+.dark body,
+.dark #root {
+  background-color: #171717;
+}
+
 html {
   position: static;
 }
