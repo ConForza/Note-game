@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className={noteSettings.isDarkMode ? "dark" : ""}>
-      <div className="lvh-100 lvw-100 text-gray-900 dark:text-neutral-100">
+      <div className="dvh-100 dvw-100 text-gray-900 dark:text-neutral-100">
         <div className="inner-container min-w-90 p-6 flex flex-col items_center justify-center">
           {route === "quiz" && (
             <QuizPage
