@@ -4,56 +4,21 @@
 html,
 body,
 #root {
-  width: 100lvw;
-  height: 100lvh;
+  width: 100%;
+  height: 100dvh;
   margin: 0;
   padding: 0;
-  background-color: #ffedd5;
-}
-
-.dark,
-.dark body,
-.dark #root {
-  width: 100lvw;
-  height: 100lvh;
-  background-color: #171717;
+  background-color: #ffefd9;
 }
 
 html {
   position: static;
+  overflow-y: hidden;
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   touch-action: none;
-}
-
-.app-shell {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  background-color: #ffedd5;
-}
-
-.dark .app-shell {
-  background-color: #171717;
-}
-
-.app-main {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.app-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-  text-align: center;
 }
 
 .correct-answer {
@@ -101,6 +66,14 @@ select {
   background-color: #f9fafb;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  width: 100dvw;
+  text-align: center;
+}
+
 .keyboard-container {
   display: none;
 }
@@ -109,7 +82,7 @@ select {
   display: block;
 }
 
-@media (orientation: landscape) and (max-height: 500px) {
+@media (orientation: landscape) and (max-height: 1100px) {
   html,
   body,
   #root {
