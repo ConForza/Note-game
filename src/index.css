@@ -66,11 +66,7 @@ select {
 }
 
 footer {
-  position: fixed;
-  bottom: env(safe-area-inset-bottom, 0);
   padding: 20px;
-  left: 0;
-  right: 0;
   text-align: center;
 }
 
