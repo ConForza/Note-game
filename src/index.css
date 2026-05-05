@@ -14,6 +14,8 @@ body,
 .dark,
 .dark body,
 .dark #root {
+  width: 100dvw;
+  height: 100dvh;
   background-color: #171717;
 }
 
