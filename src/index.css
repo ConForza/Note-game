@@ -6,20 +6,25 @@ body,
 #root {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  width: 100dvw;
-  height: 100dvh;
+  width: 100%;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   background-color: #171717;
+  overflow: hidden;
+}
+
+.app-shell {
+  height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 html {
   position: static;
-  overflow-y: hidden;
 }
 
 body {
-  overflow: hidden;
   touch-action: none;
 }
 
@@ -69,8 +74,9 @@ select {
 }
 
 footer {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
   position: fixed;
   bottom: 0;
   padding: 20px;
