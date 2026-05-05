@@ -4,20 +4,32 @@
 html,
 body,
 #root {
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #171717;
 }
 
 html {
-  position: static;
-  overflow-y: hidden;
+  background-color: #ffedd5;
 }
 
 body {
+  background-color: #ffedd5;
   overflow: hidden;
-  touch-action: none;
+}
+
+#root {
+  background-color: #ffedd5;
+}
+
+.app-shell {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .correct-answer {
@@ -67,7 +79,9 @@ select {
 
 footer {
   padding: 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   text-align: center;
+  flex-shrink: 0;
 }
 
 .keyboard-container {
@@ -79,14 +93,6 @@ footer {
 }
 
 @media (orientation: landscape) and (max-height: 1100px) {
-  html,
-  body,
-  #root {
-    margin: 0;
-    padding: 0;
-    background-color: #ffefd9;
-  }
-
   .inner-container {
     margin-top: 0;
   }
