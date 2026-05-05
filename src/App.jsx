@@ -62,19 +62,18 @@ function App() {
 
   return (
     <div className={noteSettings.isDarkMode ? "dark" : ""}>
-      <div className="app-shell bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100">
-        <main className="app-main">
-          <div className="inner-container min-w-90 p-6 flex justify-center">
-            {route === "quiz" && (
-              <QuizPage
-                noteSettings={noteSettings}
-                handleRestartQuiz={() => handleRoute("menu")}
-                handleHighScore={handleHighScore}
-                highScore={highScore}
-              />
-            )}
-
-            {route === "menu" && (
+      <div className="h-dvh w-dvw bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col items-center justify-center">
+        <div className="inner-container min-w-90 p-6 flex justify-center">
+          {route === "quiz" && (
+            <QuizPage
+              noteSettings={noteSettings}
+              handleRestartQuiz={() => handleRoute("menu")}
+              handleHighScore={handleHighScore}
+              highScore={highScore}
+            />
+          )}
+          {route === "menu" && (
+            <>
               <div className="text-center">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight bg-gradient-to-r from-blue-500 to-blue-300 text-transparent bg-clip-text mb-8">
                   Note Game
