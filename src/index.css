@@ -17,6 +17,7 @@ html {
 
 body {
   overflow-x: hidden;
+  touch-action: none;
 }
 
 .app-shell {
