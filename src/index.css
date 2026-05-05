@@ -4,11 +4,10 @@
 html,
 body,
 #root {
-  width: 100%;
-  min-height: 100dvh;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #ffefd9; /* match your app background */
+  background-color: #171717;
 }
 
 html {
@@ -68,9 +67,10 @@ select {
 
 footer {
   position: fixed;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom, 0);
   padding: 20px;
-  width: 100dvw;
+  left: 0;
+  right: 0;
   text-align: center;
 }
 
