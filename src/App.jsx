@@ -62,8 +62,8 @@ function App() {
 
   return (
     <div className={noteSettings.isDarkMode ? "dark" : ""}>
-      <div className="min-h-svh w-full bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 flex flex-col">
-        <main className="flex-1 flex items-center justify-center">
+      <div className="app-shell bg-orange-100 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100">
+        <main className="app-main">
           <div className="inner-container min-w-90 p-6 flex justify-center">
             {route === "quiz" && (
               <QuizPage
@@ -111,7 +111,7 @@ function App() {
         </main>
 
         {route === "menu" && (
-          <footer className="text-center p-5">Gary O'Shea, 2025</footer>
+          <footer className="app-footer">Gary O&apos;Shea, 2025</footer>
         )}
       </div>
     </div>
