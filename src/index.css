@@ -11,6 +11,12 @@ body,
   background-color: #ffefd9;
 }
 
+.dark html,
+.dark body,
+.dark #root {
+  background-color: #171717;
+}
+
 html {
   position: static;
   overflow-y: hidden;
